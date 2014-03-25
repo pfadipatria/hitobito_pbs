@@ -62,6 +62,7 @@ describe Group do
         [Group::Bund,
          Group::Kantonalverband,
          Group::Region,
+         Group::Corps,
          Group::Abteilung,
          Group::Biber,
          Group::Woelfe,
