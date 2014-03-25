@@ -42,7 +42,7 @@ class Group::Region < Group
   self.layer = true
 
   children Group::Region,
-           Group::Abteilung,
+           Group::Corps,
            Group::Rover
 
 

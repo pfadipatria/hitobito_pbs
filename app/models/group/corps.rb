@@ -132,8 +132,8 @@ class Group::Corps < Group
     self.permissions = [:group_read, :contact_data]
   end
 
-  roles Corpsleitung
-        CorpsleitungStv
+  roles Corpsleitung,
+        CorpsleitungStv,
         Abteilungsleitung,
         AbteilungsleitungStv,
         Sekretariat,
@@ -165,7 +165,4 @@ class Group::Corps < Group
 
         Ehrenmitglied,
         Passivmitglied
-
-
-
 end
