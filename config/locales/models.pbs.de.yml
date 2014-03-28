@@ -10,6 +10,9 @@
 de:
   activerecord:
     models:
+      group/corps:
+        one: Corps
+        other: Corps 
       group/abteilung:
         one: Abteilung
         other: Abteilungen
