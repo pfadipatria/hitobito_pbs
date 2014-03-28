@@ -19,6 +19,7 @@ Rails.application.routes.draw do
         scope module: 'census_evaluation' do
           get 'census/bund' => 'bund#index'
           get 'census/kantonalverband' => 'kantonalverband#index'
+          get 'census/corps' => 'corps#index'
           get 'census/abteilung' => 'abteilung#index'
 
           post 'census/kantonalverband/remind' => 'kantonalverband#remind'

@@ -42,6 +42,7 @@ class Group::Kantonalverband < Group
   self.layer = true
 
   children Group::Region,
+           Group::Abteilung,
            Group::Corps
 
   has_many :member_counts
