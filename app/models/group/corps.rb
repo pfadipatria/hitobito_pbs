@@ -1,10 +1,8 @@
 class Group::Corps < Group
  
- self.layer = true
-
-  attr_accessible(*(accessible_attributes.to_a +
-                    [:pbs_shortname, :pta, :vkp, :pbs_material_insurance]),
-                  as: :superior)
+  self.layer = true
+  self.used_attributes += [:pta, :vkp, :pbs_material_insurance]
+  self.superior_attributes += [:pta, :vkp, :pbs_material_insurance]
                   
   children Group::Abteilung
 
