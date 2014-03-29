@@ -5,6 +5,7 @@
 #  or later. See the COPYING file at the top-level directory or at
 #  https://github.com/hitobito/hitobito_pbs.
 
+
 # == Schema Information
 #
 # Table name: people
@@ -48,13 +49,9 @@
 #  j_s_number              :string(255)
 #  correspondence_language :string(5)
 #  brother_and_sisters     :boolean          default(FALSE), not null
+#  failed_attempts         :integer          default(0)
+#  locked_at               :datetime
 #
-
-
-#  Copyright (c) 2012-2013, Pfadibewegung Schweiz. This file is part of
-#  hitobito_pbs and licensed under the Affero General Public License version 3
-#  or later. See the COPYING file at the top-level directory or at
-#  https://github.com/hitobito/hitobito_pbs.
 
 require 'spec_helper'
 
@@ -108,14 +105,13 @@ describe Person do
     end
 
     it 'handles long numbers' do
-      person.id = 123456789
+      person.id = 123_456_789
       expect(person.pbs_number).to eq('123-456-789')
     end
 
     it 'handles very long numbers' do
-      person.id = 1234567891234
+      person.id = 1_234_567_891_234
       expect(person.pbs_number).to eq('1-234-567-891-234')
     end
   end
 end
-

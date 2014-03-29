@@ -16,7 +16,7 @@ describe MemberCounter do
     pfadi1 = groups(:pegasus)
     pfadi2 = groups(:baereried)
     leader = Fabricate(Group::Abteilung::StufenleitungPfadi.name, group: abteilung, person: Fabricate(:person, gender: 'w', birthday: '1985-01-01'))
-    rover = Fabricate(Group::Rover::Rover.name, group: groups(:rovers), person: Fabricate(:person, gender: 'm', birthday: '1989-01-01'))
+    rover = Fabricate(Group::AbteilungsRover::Rover.name, group: groups(:rovers), person: Fabricate(:person, gender: 'm', birthday: '1989-01-01'))
     Fabricate(Group::Pfadi::Einheitsleitung.name, group: pfadi1, person: Fabricate(:person, gender: 'w', birthday: '1988-01-01'))
     Fabricate(Group::Pfadi::Einheitsleitung.name, group: pfadi2, person: rover.person)
     Fabricate(Group::Pfadi::Leitpfadi.name, group: pfadi1, person: Fabricate(:person, gender: 'w', birthday: '1999-01-01'))
@@ -28,12 +28,14 @@ describe MemberCounter do
     Fabricate(Group::Abteilung::Webmaster.name, group: abteilung, person: Fabricate(:person, gender: 'w', birthday: '1972-01-01'))
     Fabricate(Group::Abteilung::Passivmitglied.name, group: abteilung, person: Fabricate(:person, gender: 'w', birthday: '1972-01-01'))
     old = Fabricate(Group::Abteilung::Abteilungsleitung.name, group: abteilung, person: Fabricate(:person, gender: 'w', birthday: '1977-03-01'), created_at: 2.years.ago)
-    old.destroy # soft delete role, create alumnus
+    old.destroy # soft delete role
   end
 
   it 'abteilung has passive and deleted people as well' do
     abteilung.people.count.should == 4
-    Person.joins(:roles).where(roles: { group_id: abteilung.id }).count.should == 5
+    Person.joins('INNER JOIN roles ON roles.person_id = people.id').
+           where(roles: { group_id: abteilung.id }).
+           count.should == 5
   end
 
   context 'instance' do

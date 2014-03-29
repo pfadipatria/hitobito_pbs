@@ -37,24 +37,17 @@
 #  bank_account           :string(255)
 #  description            :text
 #
-
-
-#  Copyright (c) 2012-2013, Pfadibewegung Schweiz. This file is part of
-#  hitobito_pbs and licensed under the Affero General Public License version 3
-#  or later. See the COPYING file at the top-level directory or at
-#  https://github.com/hitobito/hitobito_pbs.
-
 require 'spec_helper'
 
 describe Group do
   include_examples 'group types'
 
 
-  describe "#all_types" do
+  describe '#all_types' do
     subject { Group.all_types }
 
-    it "must have simple group as last item" do
-      expect(subject.last).to eq(Group::Gremium)
+    it 'must have bundes gremium as last item' do
+      expect(subject.last).to eq(Group::BundesGremium)
     end
 
     it 'is in hierarchical order' do
@@ -62,16 +55,20 @@ describe Group do
         [Group::Bund,
          Group::Kantonalverband,
          Group::Region,
-         Group::Corps,
-         Group::Abteilung,
+         Group::RegionaleRover,
+         Group::RegionalesGremium,
+		 Group::Abteilung,
+         Group::Corps,         
          Group::Biber,
          Group::Woelfe,
          Group::Pfadi,
          Group::Pio,
-         Group::Rover,
+         Group::AbteilungsRover,
          Group::Pta,
          Group::Elternrat,
-         Group::Gremium].collect(&:name))
+         Group::AbteilungsGremium,
+         Group::KantonalesGremium,
+         Group::BundesGremium].collect(&:name))
     end
   end
 

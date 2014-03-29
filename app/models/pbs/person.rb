@@ -5,6 +5,7 @@
 #  or later. See the COPYING file at the top-level directory or at
 #  https://github.com/hitobito/hitobito_pbs.
 
+
 # == Schema Information
 #
 # Table name: people
@@ -48,15 +49,14 @@
 #  j_s_number              :string(255)
 #  correspondence_language :string(5)
 #  brother_and_sisters     :boolean          default(FALSE), not null
+#  failed_attempts         :integer          default(0)
+#  locked_at               :datetime
 #
 module Pbs::Person
   extend ActiveSupport::Concern
 
   included do
     Person::PUBLIC_ATTRS << :title << :salutation
-
-    attr_accessible :salutation, :title, :grade_of_school, :entry_date, :leaving_date,
-                    :j_s_number, :correspondence_language, :brother_and_sisters
 
     validates :salutation,
               inclusion: { in: ->(person) { Salutation.available.keys } ,
@@ -68,7 +68,8 @@ module Pbs::Person
                                end,
                            allow_blank: true }
 
-    validates :entry_date, :leaving_date, timeliness: { type: :date, allow_blank: true }
+    validates :entry_date, :leaving_date,
+              timeliness: { type: :date, allow_blank: true }
 
     alias_method_chain :full_name, :title
   end
@@ -82,7 +83,7 @@ module Pbs::Person
   end
 
   def pbs_number
-    sprintf('%09d', id).gsub(/(\d)(?=(\d\d\d)+(?!\d))/, '\\1-')
+    format('%09d', id).gsub(/(\d)(?=(\d\d\d)+(?!\d))/, '\\1-')
   end
 
   def full_name_with_title

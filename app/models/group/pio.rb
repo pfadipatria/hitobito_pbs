@@ -39,7 +39,8 @@
 #
 class Group::Pio < Group
 
-  children Group::Pio
+  children Group::Pio,
+           Group::AbteilungsGremium
 
   class Einheitsleitung < ::Role
     self.permissions = [:layer_read]
