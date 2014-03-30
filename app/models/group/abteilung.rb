@@ -41,17 +41,17 @@ class Group::Abteilung < Group
 
   self.layer = true
 
-  attr_accessible(*(accessible_attributes.to_a +
-                    [:pbs_shortname, :pta, :vkp, :pbs_material_insurance]),
-                  as: :superior)
+  self.used_attributes += [:pta, :vkp, :pbs_material_insurance]
+  self.superior_attributes += [:pta, :vkp, :pbs_material_insurance]
 
   children Group::Biber,
            Group::Woelfe,
            Group::Pfadi,
            Group::Pio,
-           Group::Rover,
+           Group::AbteilungsRover,
            Group::Pta,
-           Group::Elternrat
+           Group::Elternrat,
+           Group::AbteilungsGremium
 
   has_many :member_counts
 

@@ -5,9 +5,17 @@
 #  or later. See the COPYING file at the top-level directory or at
 #  https://github.com/hitobito/hitobito_pbs.
 
-class Census < ActiveRecord::Base
 
-  attr_accessible :year, :start_at, :finish_at
+# == Schema Information
+#
+# Table name: censuses
+#
+#  id        :integer          not null, primary key
+#  year      :integer          not null
+#  start_at  :date
+#  finish_at :date
+#
+class Census < ActiveRecord::Base
 
   after_initialize :set_defaults
 

@@ -34,8 +34,6 @@ class MemberCount < ActiveRecord::Base
   COUNT_CATEGORIES = [:leiter, :biber, :woelfe, :pfadis, :pios, :rover, :pta]
   COUNT_COLUMNS = COUNT_CATEGORIES.collect { |c| [:"#{c}_f", :"#{c}_m"] }.flatten
 
-  attr_accessible(*COUNT_COLUMNS)
-
   belongs_to :abteilung, class_name: 'Group::Abteilung'
   belongs_to :region, class_name: 'Group::Region'
   belongs_to :kantonalverband, class_name: 'Group::Kantonalverband'
@@ -90,8 +88,8 @@ class MemberCount < ActiveRecord::Base
     end
 
     def totals(year)
-      columns = 'kantonalverband_id, ' +
-                'region_id, ' +
+      columns = 'kantonalverband_id, ' \
+                'region_id, ' \
                 'abteilung_id, ' +
                 COUNT_COLUMNS.collect { |c| "SUM(#{c}) AS #{c}" }.join(',')
 

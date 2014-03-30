@@ -16,10 +16,22 @@ de:
       group/abteilung:
         one: Abteilung
         other: Abteilungen
+      group/abteilungs_gremium:
+        one: Gremium
+        other: Gremien
+        long: Abteilungsgremium
+      group/abteilungs_rover:
+        one: Rover
+        other: Rovers
+        long: Rover Abteilung
       group/biber:
         one: Biber
         other: Biber
       group/bund: Bund
+      group/bundes_gremium:
+        one: Gremium
+        other: Gremien
+        long: Bundesgremium
       group/elternrat:
         one: Elternrat
         other: Elternräte
@@ -29,6 +41,10 @@ de:
       group/kantonalverband:
         one: Kantonalverband
         other: Kantonalverbände
+      group/kantonales_gremium:
+        one: Gremium
+        other: Gremien
+        long: Kantonales Gremium
       group/pfadi:
         one: Pfadi
         other: Pfadis
@@ -41,6 +57,14 @@ de:
       group/region:
         one: Region
         other: Regionen
+      group/regionales_gremium:
+        one: Gremium
+        other: Gremien
+        long: Regionales Gremium
+      group/regionale_rover:
+        one: Rover
+        other: Rovers
+        long: Regionale Rover
       group/rover:
         one: Rover
         other: Rovers
@@ -617,21 +641,25 @@ de:
             value:
               m: Lieber %{nickname}
               w: Liebe %{nickname}
+              other: Liebe(r) %{nickname}
           lieber_vorname:
             label: Liebe(r) [Vorname]
             value:
               m: Lieber %{first_name}
               w: Liebe %{first_name}
+              other: Liebe(r) %{first_name}
           lieber_titel_nachname:
             label: Liebe(r) Frau/Herr [Titel] [Nachname]
             value:
               m: Lieber Herr %{title_last_name}
               w: Liebe Frau %{title_last_name}
+              other: Liebe(r) %{title_last_name}
           sehr_geehrter_titel_nachname:
             label: Sehr geehrte(r) Frau/Herr [Titel] [Nachname]
             value:
               m: Sehr geehrter Herr %{title_last_name}
               w: Sehr geehrte Frau %{title_last_name}
+              other: Sehr geehrte(r) %{title_last_name}
 
     attributes:
       person:
@@ -683,4 +711,18 @@ de:
         pta: PTA
         pta_m: PTA m
         pta_f: PTA w
+
+      role:
+        dates: Daten
+        created_at: Von
+        deleted_at: Bis
+
+    errors:
+      models:
+        role:
+          attributes:
+            created_at:
+              on_or_before: muss in der Vergangenheit liegen.
+            deleted_at:
+              after: muss nach "Von" liegen.
 
