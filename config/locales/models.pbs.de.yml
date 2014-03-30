@@ -48,6 +48,16 @@ de:
         one: Wölfe
         other: Wölfe
 
+      group/corps/corpsleitung:
+        one: Corpsleiter
+        description:
+      group/corps/corpsleitung_stv:
+        one: Corpsleiter Stv
+        description:
+      group/corps/mitglied_corpsrat:
+        one: Mitglied Corpsrat
+        description:
+           
       group/bund/mitarbeiter_gs:
         one: Mitarbeiter GS
         description:
