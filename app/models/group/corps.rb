@@ -9,6 +9,7 @@ class Group::Corps < Group::Abteilung
                   
   children Group::Abteilung
 
+  has_many :member_counts
 
   ### ROLES
 
