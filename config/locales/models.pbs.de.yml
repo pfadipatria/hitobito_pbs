@@ -79,7 +79,7 @@ de:
         one: Corpsleiter Stv
         description:
       group/corps/mitglied_corpsrat:
-        one: Mitglied Corpsrat
+        one: Corpsrat
         description:
            
       group/bund/mitarbeiter_gs:
