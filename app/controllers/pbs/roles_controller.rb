@@ -11,16 +11,29 @@ module Pbs::RolesController
   included do
     alias_method_chain :after_create_location, :deleted
     alias_method_chain :after_update_location, :deleted
+    alias_method_chain :model_scope, :deleted
   end
 
   private
 
+  def model_scope_with_deleted
+    model_scope_without_deleted.with_deleted
+  end
+
   def after_create_location_with_deleted(new_person)
-    model_params[:deleted_at].present? ? group_people_path(entry.group_id) : after_create_location_without_deleted(new_person)
+    if model_params[:deleted_at]
+      group_people_path(entry.group_id)
+    else
+      after_create_location_without_deleted(new_person)
+    end
   end
 
   def after_update_location_with_deleted
-    model_params[:deleted_at].present? ? group_people_path(entry.group_id) : after_update_location_without_deleted
+    if model_params[:deleted_at]
+      group_people_path(entry.group_id)
+    else
+      after_update_location_without_deleted
+    end
   end
 
 end
