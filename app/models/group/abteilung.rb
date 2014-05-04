@@ -51,7 +51,8 @@ class Group::Abteilung < Group
            Group::AbteilungsRover,
            Group::Pta,
            Group::Elternrat,
-           Group::AbteilungsGremium
+           Group::AbteilungsGremium,
+           Group::Apv
 
   has_many :member_counts
 
