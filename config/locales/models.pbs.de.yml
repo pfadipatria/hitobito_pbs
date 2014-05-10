@@ -10,6 +10,9 @@
 de:
   activerecord:
     models:
+      group/apv:
+        one: APV
+        other: APVs
       group/corps:
         one: Corps
         other: Corps 
@@ -71,7 +74,20 @@ de:
       group/woelfe:
         one: Wölfe
         other: Wölfe
-
+        
+      group/apv/präsidentapv:
+        one: Präsident APV
+        description:
+      group/apv/sekretariat:
+        one: Sekretariat
+        description:
+      group/apv/adressverwaltung:
+        one: Adressverwaltung
+        description:
+      group/apv/mitglied:
+        one: Mitglied
+        description:
+        
       group/corps/corpsleitung:
         one: Corpsleiter
         description:
