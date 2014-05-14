@@ -66,6 +66,7 @@ describe Group do
          Group::AbteilungsRover,
          Group::Pta,
          Group::Elternrat,
+         Group::Apv,
          Group::AbteilungsGremium,
          Group::KantonalesGremium,
          Group::BundesGremium].collect(&:name))
