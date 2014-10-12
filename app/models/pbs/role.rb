@@ -25,15 +25,21 @@ module Pbs::Role
   included do
     self.used_attributes += [:created_at, :deleted_at]
 
+    validates_presence_of :created_at, on: :update
+
     validates :created_at,
               timeliness: { type: :datetime,
                             on_or_before: :now,
                             allow_blank: true }
+
     validates :deleted_at,
               timeliness: { type: :datetime,
                             on_or_before: :now,
                             after: ->(role) { role.created_at },
                             allow_blank: true }
+
+    before_create :detect_group_membership_notification
+    after_create :send_group_membership_notification
   end
 
   def created_at=(value)
@@ -48,5 +54,30 @@ module Pbs::Role
   rescue ArgumentError
     # could not set value
     super(nil)
+  end
+
+  def detect_group_membership_notification
+    @send_notification = false;
+
+    return unless Person.stamper
+    @current_user = Person.find(Person.stamper)
+
+    # don't notify newly created users without roles
+    p = Person.find(person.id)
+    return unless p.roles.exists?
+
+    # manually initialize ability (this is not very beautiful but
+    # must be done to detect change in access to person data)
+    @send_notification = Ability.new(@current_user).cannot?(:update, p)
+
+    true
+  end
+
+  def send_group_membership_notification
+    if @send_notification && @current_user
+      GroupMembershipJob.new(person, @current_user, group).enqueue!
+    end
+
+    true
   end
 end
