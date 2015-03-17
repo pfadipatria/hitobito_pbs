@@ -5,12 +5,12 @@
 
 = field_set_tag do
   = f.labeled_input_field :title
-  = f.labeled_collection_select :salutation, Salutation.available, :first, :last, { include_blank: true }, class: 'span6'
+  = f.labeled_collection_select :salutation, Salutation.available, :first, :last, { include_blank: false }, class: 'span6'
   = f.labeled_collection_select(:correspondence_language,
                                 Settings.application.languages.to_hash,
                                 :first,
                                 :last,
-                                { prompt: true },
+                                { prompt: false },
                                 class: 'span6')
   = f.labeled_input_field :j_s_number
   = f.labeled_input_field :grade_of_school, help_inline: t('.non_automatic_field')
