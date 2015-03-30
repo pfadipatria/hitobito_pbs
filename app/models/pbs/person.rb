@@ -72,6 +72,16 @@ module Pbs::Person
               timeliness: { type: :date, allow_blank: true }
 
     alias_method_chain :full_name, :title
+
+    after_initialize :defaults, unless: :persisted?
+    # ":if => :new_record?" is equivalent in this context
+
+  end
+
+  def defaults
+    self.country = "Schweiz"
+    self.salutation = "lieber_pfadiname"
+    self.correspondence_language = "de"
   end
 
   def salutation_label
