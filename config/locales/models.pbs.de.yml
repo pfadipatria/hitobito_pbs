@@ -15,7 +15,7 @@ de:
         other: APVs
       group/corps:
         one: Corps
-        other: Corps 
+        other: Corps
       group/abteilung:
         one: Abteilung
         other: Abteilungen
@@ -74,7 +74,7 @@ de:
       group/woelfe:
         one: Wölfe
         other: Wölfe
-        
+
       group/apv/präsident_apv:
         one: Präsident APV
         description:
@@ -87,7 +87,7 @@ de:
       group/apv/mitglied:
         one: Mitglied
         description:
-        
+
       group/corps/corpsleitung:
         one: Corpsleiter
         description:
@@ -97,7 +97,7 @@ de:
       group/corps/mitglied_corpsrat:
         one: Corpsrat
         description:
-           
+
       group/bund/mitarbeiter_gs:
         one: Mitarbeiter GS
         description:
