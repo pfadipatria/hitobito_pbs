@@ -73,7 +73,7 @@ module Pbs::Person
 
     alias_method_chain :full_name, :title
 
-    after_initialize :defaults, unless: :persisted?
+   # after_initialize :defaults, unless: :persisted?
     # ":if => :new_record?" is equivalent in this context
 
   end
