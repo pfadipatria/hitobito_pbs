@@ -36,6 +36,16 @@ seeder = PbsPersonSeeder.new
 seeder.seed_all_roles
 
 root = Group.root
+
 devs.each do |name, email|
   seeder.seed_developer(name, email, root, Group::Bund::MitarbeiterGs)
 end
+
+# Seed Max Mustermann, Fidelio as Abteilungsleiter Pfadi Patria
+patria = Group.find_by_name('Patria')
+seeder.seed_developer('Max Mustermann', 'fidelio@pfadipatria.com', patria, Group::Abteilung::Abteilungsleitung)
+seeder.seed_role(Person.find_by_email('fidelio@pfadipatria.com'), patria, Group::Abteilung::Abteilungsleitung)
+
+person = Person.find_by_email('fidelio@pfadipatria.com')
+person.nickname = 'Fidelio'
+person.save
